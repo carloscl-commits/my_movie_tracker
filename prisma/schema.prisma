@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../.prisma/client"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Movie {
+  id              Int     @id @default(autoincrement())
+  tmdbId          Int     @unique
+  title           String
+  year            Int?
+  synopsis        String?
+  posterUrl       String?
+  genres          String? // JSON array stored as string
+  personalRating  Int?    // 1-5 stars
+  status          String  @default("unseen") // unseen | seen
+  favorite        Boolean @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model UserPreferences {
+  id              Int     @id @default(1)
+  theme           String  @default("light") // light | dark
+  accentColor     String  @default("#3b82f6")
+  updatedAt       DateTime @updatedAt
+}

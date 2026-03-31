@@ -1,0 +1,137 @@
+.container {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.themeToggle {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.themeToggle:hover {
+  border-color: var(--accent-color);
+  background: var(--bg-primary);
+}
+
+.colorPickerWrapper {
+  position: relative;
+}
+
+.colorButton {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.colorButton:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+}
+
+.colorPicker {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  min-width: 200px;
+}
+
+.presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.colorSwatch {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.colorSwatch:hover {
+  transform: scale(1.05);
+}
+
+.colorSwatch.active {
+  border-color: var(--text-primary);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.customColorInput {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+}
+
+.nativeColorPicker {
+  width: 50px;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.nativeColorPicker::-webkit-color-swatch-wrapper {
+  padding: 2px;
+}
+
+.nativeColorPicker::-webkit-color-swatch {
+  border: none;
+  border-radius: 3px;
+}
+
+.hexInput {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-family: monospace;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.hexInput:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+@media (max-width: 768px) {
+  .colorPicker {
+    position: fixed;
+    top: auto;
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    max-width: none;
+  }
+}

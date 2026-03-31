@@ -1,0 +1,122 @@
+.sidebar {
+  width: 220px;
+  padding: 1.5rem;
+  border-right: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  overflow-y: auto;
+  transition: width 0.3s ease, padding 0.3s ease;
+  position: relative;
+}
+
+.collapsed {
+  width: 50px !important;
+  padding: 1rem 0.5rem !important;
+}
+
+.collapseButton {
+  position: absolute;
+  top: 1rem;
+  right: 0.5rem;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collapseButton:hover {
+  color: var(--text-primary);
+}
+
+.section {
+  padding-top: 2.5rem;
+}
+
+.sectionTitle {
+  margin: 0 0 1rem 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.filterGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filterOption {
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.filterOption:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.filterOption.active {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .collapsed {
+    width: 100% !important;
+    padding: 1rem !important;
+  }
+
+  .collapseButton {
+    position: static;
+    width: auto;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .section {
+    padding-top: 0;
+  }
+}

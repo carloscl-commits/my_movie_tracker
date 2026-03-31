@@ -1,0 +1,101 @@
+.searchContainer {
+  position: relative;
+  width: 100%;
+  z-index: 1000;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: border-color 0.2s;
+  position: relative;
+  z-index: 1001;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.dropdown {
+  position: fixed;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 9999;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  min-width: 200px;
+  width: calc(90% - 3rem);
+  max-width: 500px;
+}
+
+.item {
+  padding: 1rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.resultItem {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s;
+}
+
+.resultItem:hover:not(:disabled) {
+  background-color: var(--bg-secondary);
+}
+
+.resultItem:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.poster {
+  width: 40px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.year {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
