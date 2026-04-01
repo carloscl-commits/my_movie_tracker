@@ -51,7 +51,8 @@ async function handler(request: NextRequest) {
         tmdbId: movie.id,
         title: movie.title,
         year: movie.release_date ? new Date(movie.release_date).getFullYear() : null,
-        posterUrl: `https://image.tmdb.org/t/p/w92${movie.poster_path}`,
+        posterPath: movie.poster_path,
+        posterUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
         synopsis: movie.overview,
         genreIds: movie.genre_ids || [], // TMDB returns genre IDs
       }));

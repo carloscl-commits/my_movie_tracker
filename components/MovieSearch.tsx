@@ -8,6 +8,7 @@ interface MovieResult {
   tmdbId: number;
   title: string;
   year: number | null;
+  posterPath?: string;
   posterUrl: string;
   synopsis: string | null;
   genreIds?: number[];
@@ -116,7 +117,7 @@ export function MovieSearch({ onMovieSelected, isLoading = false }: MovieSearchP
             disabled={isLoading}
           >
             <img
-              src={movie.posterUrl}
+              src={movie.posterPath ? `https://image.tmdb.org/t/p/w92${movie.posterPath}` : movie.posterUrl}
               alt={movie.title}
               className={styles.poster}
             />
