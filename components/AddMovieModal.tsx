@@ -56,6 +56,7 @@ export function AddMovieModal({
       }
 
       onMovieAdded();
+      setIsLoading(false);
       onClose();
     } catch (err) {
       console.error('Error adding movie:', err);

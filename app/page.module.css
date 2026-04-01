@@ -1,9 +1,10 @@
 .container {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background: var(--bg-primary);
   color: var(--text-primary);
+  overflow: hidden;
 }
 
 .topBar {
@@ -56,6 +57,8 @@
   display: flex;
   flex: 1;
   overflow: hidden;
+  height: 0;
+  min-height: 0;
 }
 
 .gallery {
@@ -247,24 +250,23 @@
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
-  padding: 0.1875rem 0.5rem;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
   background: var(--accent-subtle);
   color: var(--accent-color);
-  border-radius: 4px;
-  font-size: 0.625rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  width: fit-content;
+  border-radius: 6px;
 }
 
 .favoriteBadge {
   display: inline-flex;
   align-items: center;
-  font-size: 0.75rem;
-  line-height: 1;
-  filter: none;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+  border-radius: 6px;
 }
 
 /* Responsive */
