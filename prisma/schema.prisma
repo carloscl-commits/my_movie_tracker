@@ -33,3 +33,10 @@ model UserPreferences {
   accentColor     String  @default("#3b82f6")
   updatedAt       DateTime @updatedAt
 }
+
+model UserCredentials {
+  id              Int     @id @default(1)
+  username        String
+  passwordHash    String
+  updatedAt       DateTime @updatedAt
+}

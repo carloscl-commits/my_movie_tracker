@@ -39,7 +39,8 @@
       "Bash(taskkill //PID 3324 //F)",
       "Bash(taskkill //PID 17088 //F)",
       "Bash(taskkill //PID 22256 //F)",
-      "Bash(taskkill //PID 3532 //F)"
+      "Bash(taskkill //PID 3532 //F)",
+      "Bash(npx next:*)"
     ]
   }
 }
