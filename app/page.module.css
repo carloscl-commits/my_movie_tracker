@@ -10,39 +10,46 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+  padding: 1rem 1.5rem;
   border-bottom: 1px solid var(--border-color);
-  background: var(--bg-secondary);
+  background: var(--bg-elevated);
   gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(12px);
 }
 
 .topBarActions {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
   align-items: center;
 }
 
 .title {
   margin: 0;
-  font-size: 1.875rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  color: var(--accent-color);
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
 .logoutButton {
   padding: 0.5rem 1rem;
-  background: var(--accent-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  font-weight: 600;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all var(--transition);
 }
 
 .logoutButton:hover {
-  opacity: 0.9;
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+  background: var(--bg-secondary);
 }
 
 .content {
@@ -53,7 +60,7 @@
 
 .gallery {
   flex: 1;
-  padding: 2rem;
+  padding: 1.5rem;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -64,62 +71,72 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .addButton {
-  padding: 0.75rem 1rem;
+  padding: 0.625rem 1.25rem;
   background: var(--accent-color);
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 0.875rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
   font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all var(--transition);
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
 }
 
 .addButton:hover {
-  opacity: 0.9;
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent-color) 30%, transparent);
+}
+
+.addButton:active {
+  transform: translateY(0);
 }
 
 .movieCount {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--text-secondary);
   font-weight: 500;
 }
 
 .error {
-  padding: 1rem;
-  background: #fee2e2;
-  color: #991b1b;
+  padding: 0.875rem 1rem;
+  background: #fef2f2;
+  color: #b91c1c;
   border: 1px solid #fecaca;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   margin-bottom: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
+  font-size: 0.8125rem;
 }
 
 [data-theme='dark'] .error {
-  background: #7f1d1d;
-  color: #fecaca;
-  border-color: #991b1b;
+  background: rgba(239, 68, 68, 0.1);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.2);
 }
 
 .retryButton {
-  padding: 0.5rem 1rem;
-  background: #991b1b;
+  padding: 0.375rem 0.75rem;
+  background: #b91c1c;
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 0.875rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
-  transition: opacity 0.2s;
+  transition: opacity var(--transition);
 }
 
 [data-theme='dark'] .retryButton {
@@ -137,28 +154,33 @@
   justify-content: center;
   height: 100%;
   color: var(--text-secondary);
-  font-size: 1.125rem;
+  font-size: 0.9375rem;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.25rem;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform var(--transition);
   background: transparent;
   border: none;
   padding: 0;
   text-align: inherit;
+  border-radius: var(--radius-md);
 }
 
 .card:hover {
   transform: translateY(-4px);
+}
+
+.card:hover .poster {
+  box-shadow: var(--shadow-lg);
 }
 
 .card:focus {
@@ -169,20 +191,22 @@
   width: 100%;
   aspect-ratio: 2/3;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   background: var(--bg-secondary);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.625rem;
+  transition: box-shadow var(--transition);
 }
 
 .cardInfo {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  padding: 0 0.125rem;
 }
 
 .movieTitle {
   margin: 0;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--text-primary);
   line-height: 1.3;
@@ -191,7 +215,7 @@
 
 .year {
   margin: 0;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   color: var(--text-secondary);
 }
 
@@ -199,40 +223,48 @@
   display: flex;
   gap: 0.25rem;
   flex-wrap: wrap;
-  margin-bottom: 0.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 
 .genreTag {
   display: inline-block;
-  padding: 0.2rem 0.4rem;
+  padding: 0.125rem 0.375rem;
   background: var(--bg-secondary);
   color: var(--text-secondary);
-  border-radius: 2px;
-  font-size: 0.65rem;
+  border-radius: 4px;
+  font-size: 0.625rem;
   font-weight: 500;
 }
 
 .badgeRow {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.375rem;
+  margin-top: 0.125rem;
 }
 
 .badge {
-  display: inline-block;
-  padding: 0.25rem 0.5rem;
-  background: var(--accent-color);
-  color: white;
-  border-radius: 3px;
-  font-size: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.1875rem 0.5rem;
+  background: var(--accent-subtle);
+  color: var(--accent-color);
+  border-radius: 4px;
+  font-size: 0.625rem;
   font-weight: 600;
-  text-transform: capitalize;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
   width: fit-content;
 }
 
 .favoriteBadge {
-  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
   line-height: 1;
+  filter: none;
 }
 
 /* Responsive */
@@ -249,17 +281,13 @@
 
   .topBar {
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.75rem;
     align-items: flex-start;
   }
 
   .topBarActions {
-    flex-direction: column;
     width: 100%;
-  }
-
-  .logoutButton {
-    width: 100%;
+    justify-content: flex-end;
   }
 
   .galleryHeader {
@@ -269,10 +297,11 @@
 
   .addButton {
     width: 100%;
+    justify-content: center;
   }
 
   .gallery {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   .grid {

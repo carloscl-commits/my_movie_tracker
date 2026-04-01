@@ -13,12 +13,14 @@ A personal web application to manage your movie collection with search, ratings,
 - **Search & Add**: Query TMDB API with debounced search (300ms)
 - **View Details**: Click cards to see synopsis, year, genres
 - **Rate Movies**: 1-5 star rating system
-- **Track Status**: Mark as Unseen / Seen / Favorite
+- **Track Status**: Mark as Unseen / Seen
+- **Favorites**: Toggle favorite independently from watch status
 - **Delete**: Remove movies from collection with confirmation
 
 ### 🎨 Customization
 - **Dark/Light Mode**: Toggle with persistent storage
 - **Accent Colors**: 6 presets + custom color picker with hex input
+- **Modern UI**: Clean SVG icons, glassmorphism effects, smooth animations
 - **Responsive Design**: Mobile, tablet, and desktop layouts
 
 ### 🔍 Filtering & Organization
@@ -86,14 +88,13 @@ A personal web application to manage your movie collection with search, ratings,
    AUTH_USERNAME=admin
    AUTH_PASSWORD=password
 
-   # NextAuth configuration
-   NEXTAUTH_URL=http://localhost:3000
+   # NextAuth configuration (NEXTAUTH_URL auto-detected in dev)
    NEXTAUTH_SECRET=your_secret_key_change_this
    ```
 
 4. **Initialize the database**
    ```bash
-   npx prisma migrate dev
+   npx prisma db push
    ```
 
 5. **Start the development server**
@@ -123,8 +124,9 @@ A personal web application to manage your movie collection with search, ratings,
 ### View & Edit Movies
 1. Click any movie card to open detail modal
 2. **Edit Rating**: Click stars (1-5), or "Clear" to remove
-3. **Change Status**: Click Unseen/Seen/Favorite buttons
-4. **Delete**: Click "Delete Movie" button (with confirmation)
+3. **Change Status**: Click eye icons for Unseen/Seen
+4. **Toggle Favorite**: Click heart icon (independent from watch status)
+5. **Delete**: Click "Delete Movie" button (with confirmation)
 
 ### Filter Gallery
 1. Use **Status** filter: All, Favorites, Unseen, Seen
@@ -133,7 +135,7 @@ A personal web application to manage your movie collection with search, ratings,
 4. Movie counter updates dynamically
 
 ### Customize Theme
-1. Click **☀️/🌙** to toggle dark/light mode
+1. Click the sun/moon icon to toggle dark/light mode
 2. Click color swatch to open color picker:
    - Click preset colors (6 options)
    - Use native color picker
@@ -141,7 +143,7 @@ A personal web application to manage your movie collection with search, ratings,
 3. Changes save instantly to database
 
 ### Sidebar
-- Click **◀/▶** button to collapse/expand sidebar
+- Click the collapse/expand arrow to toggle sidebar
 - Saves more screen space on mobile
 - All filters still accessible
 
@@ -185,6 +187,8 @@ My_Movie_Tracker/
 │   ├── schema.prisma                        # Database schema
 │   ├── migrations/                          # Migration history
 │   └── dev.db                               # SQLite database
+├── auth.config.ts                          # NextAuth configuration
+├── prisma.config.ts                        # Prisma configuration
 ├── middleware.ts                            # Route protection
 ├── .env                                     # Environment variables
 ├── .env.example                             # Template
@@ -204,7 +208,7 @@ My_Movie_Tracker/
 - `GET /api/movies` — List all movies
 - `POST /api/movies` — Create movie
 - `GET /api/movies/[id]` — Get movie details
-- `PUT /api/movies/[id]` — Update rating/status
+- `PUT /api/movies/[id]` — Update rating/status/favorite
 - `DELETE /api/movies/[id]` — Delete movie
 
 ### User Preferences
@@ -228,7 +232,8 @@ My_Movie_Tracker/
 | posterUrl | String? | Poster image URL |
 | genres | String? | JSON array of genre IDs |
 | personalRating | Int? | User rating (1-5) |
-| status | String | "unseen" / "seen" / "favorite" |
+| status | String | "unseen" / "seen" |
+| favorite | Boolean | Favorite flag (default: false) |
 | createdAt | DateTime | Creation timestamp |
 | updatedAt | DateTime | Last update timestamp |
 
@@ -252,8 +257,8 @@ NEXTAUTH_SECRET=random_string_min_32_chars
 
 ### Optional
 ```env
-DATABASE_URL=file:./prisma/dev.db  # Default, modify for different location
-NEXTAUTH_URL=http://localhost:3000  # Change for production
+DATABASE_URL=file:./prisma/dev.db   # Default, modify for different location
+NEXTAUTH_URL=https://yourdomain.com # Auto-detected in dev; set for production
 ```
 
 ## Development
@@ -288,20 +293,26 @@ const names = getGenreNames([28, 12]); // ['Action', 'Adventure']
 ### CSS Custom Properties
 ```css
 --accent-color      /* Primary button/link color */
+--accent-hover      /* Accent hover state */
+--accent-subtle     /* Accent tinted background */
 --bg-primary        /* Main background */
---bg-secondary      /* Sidebar/component background */
+--bg-secondary      /* Component background */
+--bg-elevated       /* Cards/modals background */
 --text-primary      /* Main text */
 --text-secondary    /* Secondary text */
---border-color      /* Borders */
+--border-color      /* Borders (semi-transparent) */
+--shadow-sm/md/lg   /* Elevation shadows */
+--radius-sm/md/lg   /* Border radius tokens (8/12/16px) */
+--transition        /* Standard easing curve */
 ```
 
 ### Dark Mode
 Toggled via `data-theme="dark"` attribute on `<html>` element.
 
 ### Color Scheme
-- **Light**: White backgrounds, dark text
-- **Dark**: Dark backgrounds (#1f2937), light text
-- **Smooth transitions**: 0.3s ease on theme change
+- **Light**: Clean whites (#fafafa), zinc-toned text
+- **Dark**: True black tones (#09090b), soft zinc text
+- **Smooth transitions**: 0.2s cubic-bezier easing on theme change
 
 ## Troubleshooting
 
@@ -316,7 +327,7 @@ Toggled via `data-theme="dark"` attribute on `<html>` element.
 rm prisma/dev.db
 
 # Reinitialize
-npx prisma migrate dev
+npx prisma db push
 ```
 
 ### Login Not Working
@@ -325,7 +336,7 @@ npx prisma migrate dev
 - Clear browser cookies and try again
 
 ### Movies Not Showing
-- Ensure database is initialized: `npx prisma migrate dev`
+- Ensure database is initialized: `npx prisma db push`
 - Check browser console for API errors
 - Verify authentication by checking redirect to login
 
@@ -399,5 +410,5 @@ For issues or questions:
 
 ---
 
-**Last Updated**: 2026-03-31
+**Last Updated**: 2026-04-01
 **Status**: Production Ready ✅

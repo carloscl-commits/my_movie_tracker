@@ -70,7 +70,7 @@ export function MovieSidebar({
                   }`}
                   onClick={() => handleStatusChange('favorite')}
                 >
-                  ❤️ Favorites
+                  Favorites
                 </button>
                 <button
                   className={`${styles.filterOption} ${
@@ -78,7 +78,7 @@ export function MovieSidebar({
                   }`}
                   onClick={() => handleStatusChange('seen')}
                 >
-                  ✓ Seen
+                  Seen
                 </button>
                 <button
                   className={`${styles.filterOption} ${
@@ -86,7 +86,7 @@ export function MovieSidebar({
                   }`}
                   onClick={() => handleStatusChange('unseen')}
                 >
-                  ○ Unseen
+                  Unseen
                 </button>
               </div>
             </div>

@@ -153,7 +153,10 @@ export function MovieDetailModal({
           onClick={onClose}
           disabled={isLoading}
         >
-          ✕
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
         </button>
 
         <div className={styles.content}>
@@ -208,22 +211,37 @@ export function MovieDetailModal({
               <label className={styles.label}>Status</label>
               <div className={styles.statusRow}>
                 <div className={styles.statusButtons}>
-                  {([
-                    { key: 'unseen', icon: '👁️‍🗨️', label: 'Unseen' },
-                    { key: 'seen', icon: '👁️', label: 'Seen' },
-                  ] as const).map(({ key, icon, label }) => (
-                    <button
-                      key={key}
-                      className={`${styles.statusButton} ${
-                        localMovie.status === key ? styles.active : ''
-                      }`}
-                      onClick={() => handleStatusChange(key)}
-                      disabled={isLoading}
-                      title={label}
-                    >
-                      <span className={styles.statusIcon}>{icon}</span>
-                    </button>
-                  ))}
+                  <button
+                    className={`${styles.statusButton} ${
+                      localMovie.status === 'unseen' ? styles.active : ''
+                    }`}
+                    onClick={() => handleStatusChange('unseen')}
+                    disabled={isLoading}
+                    title="Unseen"
+                  >
+                    <span className={styles.statusIcon}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94" />
+                        <path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19" />
+                        <line x1="1" y1="1" x2="23" y2="23" />
+                      </svg>
+                    </span>
+                  </button>
+                  <button
+                    className={`${styles.statusButton} ${
+                      localMovie.status === 'seen' ? styles.active : ''
+                    }`}
+                    onClick={() => handleStatusChange('seen')}
+                    disabled={isLoading}
+                    title="Seen"
+                  >
+                    <span className={styles.statusIcon}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
+                    </span>
+                  </button>
                 </div>
                 <button
                   className={`${styles.favoriteButton} ${
@@ -233,7 +251,11 @@ export function MovieDetailModal({
                   disabled={isLoading}
                   title={localMovie.favorite ? 'Remove from favorites' : 'Add to favorites'}
                 >
-                  <span className={styles.statusIcon}>❤️</span>
+                  <span className={styles.statusIcon}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill={localMovie.favorite ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                    </svg>
+                  </span>
                 </button>
               </div>
             </div>

@@ -1,11 +1,12 @@
 .sidebar {
-  width: 220px;
-  padding: 1.5rem;
+  width: 240px;
+  padding: 1.25rem;
   border-right: 1px solid var(--border-color);
-  background: var(--bg-secondary);
+  background: var(--bg-elevated);
   overflow-y: auto;
-  transition: width 0.3s ease, padding 0.3s ease;
+  transition: width var(--transition), padding var(--transition);
   position: relative;
+  flex-shrink: 0;
 }
 
 .collapsed {
@@ -15,37 +16,39 @@
 
 .collapseButton {
   position: absolute;
-  top: 1rem;
+  top: 0.75rem;
   right: 0.5rem;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   padding: 0;
   background: transparent;
   border: none;
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 0.75rem;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: color var(--transition);
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--radius-sm);
 }
 
 .collapseButton:hover {
   color: var(--text-primary);
+  background: var(--bg-secondary);
 }
 
 .section {
-  padding-top: 2.5rem;
+  padding-top: 2.25rem;
 }
 
 .sectionTitle {
   margin: 0 0 1rem 0;
-  font-size: 0.875rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--text-primary);
-  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
 }
 
 .filterGroup {
@@ -54,44 +57,45 @@
 
 .label {
   display: block;
-  margin-bottom: 0.75rem;
-  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.6875rem;
   font-weight: 600;
   color: var(--text-secondary);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.06em;
 }
 
 .options {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
 .filterOption {
   padding: 0.5rem 0.75rem;
-  background: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  font-size: 0.875rem;
-  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
   cursor: pointer;
   text-align: left;
-  transition: all 0.2s;
+  transition: all var(--transition);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 500;
 }
 
 .filterOption:hover {
-  border-color: var(--accent-color);
-  color: var(--accent-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 .filterOption.active {
-  background: var(--accent-color);
-  border-color: var(--accent-color);
-  color: white;
+  background: var(--accent-subtle);
+  color: var(--accent-color);
+  font-weight: 600;
 }
 
 /* Responsive */
@@ -101,7 +105,7 @@
     border-right: none;
     border-bottom: 1px solid var(--border-color);
     padding: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
   }
 
   .collapsed {
@@ -113,7 +117,7 @@
     position: static;
     width: auto;
     height: auto;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .section {
